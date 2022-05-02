@@ -6,7 +6,7 @@ import { requestLog } from "./middleware/requestsLog.mjs";
 import { postUserController } from "./controllers/usersControllers.mjs"
 import { deleteTaskController, getTaskController, postTaskController, putTaskController } from "./controllers/tasksController.mjs"
 
-const PATH_PREFIX = "localhost:3000"
+const PATH_PREFIX = "/application"
 const app = express();
 try {
     const jsonParser = express.json();
