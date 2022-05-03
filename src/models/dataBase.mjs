@@ -1,7 +1,8 @@
 import sqlite3 from "sqlite3";
 //solo se crea la tabla de users
+//https://github.com/TryGhost/node-sqlite3/wiki/API#user-content-databaserunsql-param--callback DOCUMENTACION
 
-const db = new sqlite3.Database('src/tasks.db', (err)=>{
+export const db = new sqlite3.Database('./tasks.db', (err)=>{
     if (err) {
         console.log(err.message);
     }
@@ -23,7 +24,8 @@ db.run(`
         IF NOT EXISTS
         tasks (
             id INTEGER PRIMARY KEY,
-            description TEXT NOT NULL
+            description VARCHAR(100) NOT NULL,
+            done BOOLEAN DEFAULT false NOT NULL
             
         )
 `);
