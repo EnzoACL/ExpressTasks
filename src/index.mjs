@@ -18,7 +18,7 @@ try {
     app.get(PATH_PREFIX+"/task/", authMiddleware, getOnetTaskController);
     app.post(PATH_PREFIX+"/task/", authMiddleware, jsonParser, postTaskController);
     app.put(PATH_PREFIX+"/task/", authMiddleware, jsonParser, putTaskController);
-    app.delete(PATH_PREFIX+"/task/", authMiddleware, jsonParser, deleteTaskController);
+    app.delete(PATH_PREFIX+"/task/", jsonParser, deleteTaskController);
 
     app.listen(process.env.PORT || 3000,()=>{
         console.log("Express running...");

@@ -14,7 +14,34 @@ export function getAllTaskController(request, response) {
         }
     )        
 }
-
+export function postTaskController(request, response) {
+    const { description, done } = request.body;
+    db.run(
+        `INSERT INTO tasks(description, done) VALUES ("${description}", "${done}")`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
+export function deleteTaskController (request, response) {
+    const { id } = request.body;
+    db.run(
+        `DELETE from tasks WHERE id=("${id}")`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(204)
+            }
+        }
+    )
+}
 export function getOnetTaskController(request, response) {
     try {
         const task = task.find(
@@ -25,21 +52,6 @@ export function getOnetTaskController(request, response) {
     } catch (err) {
         response.sendStatus(400)
     }
-}
-
-export function postTaskController(request, response) {
-    const { description, done } = request.body;
-    db.run(
-        `INSERT INTO tasks(description, done) VALUES ("${description}", ${done})`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
-        }
-    )
 }
 
 
@@ -64,11 +76,3 @@ export function putTaskController (request, response) {
     response.sendStatus(200);
 }
 
-export function deleteTaskController (request, response) {
-    const updatedTask = request.body;
-    const oldTaskIdx = tasks.findIndex(
-        item => item.id === updatedTask.id
-    )
-    tasks.splice(oldTaskIdx,1);
-    response.sendStatus(200)
-}

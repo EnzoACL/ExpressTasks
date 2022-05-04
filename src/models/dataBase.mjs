@@ -1,5 +1,4 @@
 import sqlite3 from "sqlite3";
-//solo se crea la tabla de users
 //https://github.com/TryGhost/node-sqlite3/wiki/API#user-content-databaserunsql-param--callback DOCUMENTACION
 
 export const db = new sqlite3.Database('./tasks.db', (err)=>{
